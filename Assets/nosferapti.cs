@@ -13,9 +13,12 @@ public class nosferapti : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 direction;
     private float avoidRange = 1f;
+    private bool facingRight = true;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -24,7 +27,14 @@ public class nosferapti : MonoBehaviour
     {
         direction = (player.position - transform.position).normalized;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, avoidRange, wallMask);
+        
 
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (facingRight && direction.x < 0 || !facingRight && direction.x > 0)
+        {
+        facingRight = !facingRight;
+        spriteRenderer.flipX = !spriteRenderer.flipX;
+        }
         if (hit.collider != null)
         {
             direction = Vector2.Perpendicular(hit.normal).normalized;
