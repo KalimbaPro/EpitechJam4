@@ -6700,7 +6700,7 @@ GameObject:
   - component: {fileID: 418300013}
   m_Layer: 0
   m_Name: Carapuce
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6718,9 +6718,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0
-  pp: 100
   fscore: 0
-  ekilled: 0
+  health: 30
   level: 2
   scoreText: {fileID: 0}
 --- !u!114 &418300014
