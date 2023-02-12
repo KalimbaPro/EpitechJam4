@@ -22,12 +22,11 @@ public class Fire : MonoBehaviour
     {
         if (hitInfo.name == "Carapuce")
         {
-            carapuce.time += 15;
+            carapuce.TakeDamage(1);
         }
     }
     void Die()
     {
-        carapuce.ekilled += 1;
         Destroy(gameObject);
     }
 }

@@ -8,9 +8,8 @@ using TMPro;
 public class stats : MonoBehaviour
 {
     public float time;
-    public int pp = 100;
     public int fscore = 0;
-    public int ekilled = 0;
+    public int health = 30;
     public int level;
     [SerializeField] TextMeshProUGUI scoreText;
 
@@ -20,23 +19,21 @@ public class stats : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         score();
-        pp = 100;
         SceneManager.LoadScene("MainMenu");
     }
 
     public void Update()
     {
-        
-        if (ekilled == 5)
+        GameObject[] fires = GameObject.FindGameObjectsWithTag("fire");
+        if (fires.Length == 0)
         {
             SceneManager.LoadScene("Level " + (level + 1).ToString());
-            pp = 100;
         }
-        else if (ekilled == 1 && level == 3)
+        else if (fires.Length == 0 && level == 3)
         {
             StartCoroutine(updateDelay());
         }
-        if (pp == 0)
+        if (health <= 0)
         {
             scoreText.text = "GAME OVER";
         }
@@ -47,12 +44,16 @@ public class stats : MonoBehaviour
     {
         time += d * Time.deltaTime;
     }
-    public void removePP(int d)
-    {
-        pp -= d;
-    }
     public void score()
     {
         fscore = (int) (1 / time * 1000);
+    }
+    public void TakeDamage(int d)
+    {
+        health -= d;
+        if (health <= 0)
+        {
+            // Die();
+        }
     }
 }

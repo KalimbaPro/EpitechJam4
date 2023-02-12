@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class bubbleScript : MonoBehaviour
 {
-    public stats carapuce;
+    public GameObject carapuce;
     public float speed = 5f;
     public Rigidbody2D rb;
 
     void Start()
     {
-        rb.velocity = transform.up * speed;
+        Vector2 direction = carapuce.transform.up;
+        rb.velocity = direction * speed;
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)

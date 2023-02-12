@@ -16,9 +16,8 @@ public class Bubblebeam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (carapuce.pp >= 5 && Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
-            carapuce.removePP(5);
             Shoot();
         }
         
@@ -26,6 +25,11 @@ public class Bubblebeam : MonoBehaviour
 
     void Shoot()
     {
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            firePoint.LookAt(player.transform.position);
+        }
         Instantiate(bubblePrefab, firePoint.position, firePoint.rotation);
     }
 }
