@@ -170,4 +170,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   minDistanceToPlayer: 1
-  health: 15
+  health: 40
